@@ -279,7 +279,7 @@ npm run preview
 
 ## 👥 Authors
 
-- **Abhishek Bahuguna** - *Initial work* - [Your GitHub](https://github.com/Abhishek980-tech\)
+- **Abhishek Bahuguna** - *Initial work* - (https://github.com/Abhishek980-tech\)
 
 ## 🙏 Acknowledgments
 
@@ -287,10 +287,5 @@ npm run preview
 - PyTorch and Google AI communities
 - Open source contributors
 
-## 📞 Support
-
-For support, email support@Leafvision.com or join our Discord community.
-
----
 
 **Made with ❤️ for farmers worldwide**
