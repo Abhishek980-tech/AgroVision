@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div>
-        <h3>AgroVisionAI</h3>
+        <h3>LeafVisionAI</h3>
         <p>AI-powered plant disease detection.</p>
       </div>
 

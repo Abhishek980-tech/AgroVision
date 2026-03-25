@@ -63,7 +63,13 @@ def predict(model_name, image_path):
         "Early Blight",
         "Late Blight",
         "Leaf Mold",
-        "Mosaic Virus"
+        "Bacterial spot",
+        "Powdery Mildew",
+        "Septoria leaf spot",
+        "Spider mites Two spotted spider mite",
+        "Target spot",
+        "Tomato mosaic virus",
+        "Tomato yellow leaf curl virus"
     ]
 
     disease = classes[predicted.item()]

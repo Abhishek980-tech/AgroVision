@@ -9,8 +9,7 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-left">
         <h1>
-          Protect Your Tomato Crops with <span>AI-Powered</span> Disease
-          Detection
+          Protect Your Tomato Crops with <span>AI-Powered</span> Disease Detection
         </h1>
 
         <p>
@@ -19,14 +18,19 @@ export default function Hero() {
         </p>
 
         <div className="hero-buttons">
-          <button 
+          <button
             className="primary-btn"
             onClick={() => navigate("/signin")}
           >
             Get Started Free →
           </button>
 
-          <button className="secondary-btn">Learn More</button>
+          <button
+            className="secondary-btn"
+            onClick={() => navigate("/about")}
+          >
+            Learn More
+          </button>
         </div>
       </div>
 
@@ -42,13 +46,18 @@ export default function Hero() {
           <p className="disease-name">Late Blight</p>
 
           <div className="progress-bar">
-            <div className="progress-fill" style={{ width: "94%" }}></div>
+            <div
+              className="progress-fill"
+              style={{ width: "94%" }}
+            ></div>
           </div>
 
           <p className="percent-text">94.5%</p>
         </div>
 
-        <p className="recommend-text">✔ Treatment recommendations available</p>
+        <p className="recommend-text">
+          ✔ Treatment recommendations available
+        </p>
       </div>
     </section>
   );
