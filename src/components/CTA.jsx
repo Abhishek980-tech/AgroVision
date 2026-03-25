@@ -7,7 +7,7 @@ export default function CTA() {
   return (
     <section className="cta">
       <h2>Ready to protect your crops?</h2>
-      <p>Join thousands of farmers improving yield with AgroVisionAI.</p>
+      <p>Join thousands of farmers improving yield with LeafVisionAI.</p>
 
       <button
         className="cta-btn"

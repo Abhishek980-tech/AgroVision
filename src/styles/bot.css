@@ -1,51 +1,102 @@
-/* PAGE */
+/* =========================
+   PAGE
+========================= */
 .chat-page {
-  background: #f8f9fa;
+  background: linear-gradient(to bottom, #f8fff9, #f3f4f6);
   min-height: calc(100vh - 80px);
-  padding: 20px 0;
+  padding: 20px 0 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* TITLE */
+/* =========================
+   TITLE
+========================= */
 .chat-page h2 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
-  margin-bottom: 15px;
-  color: #1f2937;
+  margin-bottom: 10px;
+  color: #14532d;
 }
 
-/* CHAT WINDOW */
+/* =========================
+   LANGUAGE TOGGLE
+========================= */
+.bot-lang-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bot-lang-toggle button {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #16a34a;
+  background: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.bot-lang-toggle button:hover {
+  background: #dcfce7;
+}
+
+.bot-lang-toggle .active {
+  background: #16a34a;
+  color: white;
+}
+
+/* =========================
+   CHAT WINDOW
+========================= */
 .chat-window {
   width: 75%;
   max-width: 900px;
   height: 70vh;
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 20px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0px 8px 24px rgba(0,0,0,0.1);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* MESSAGE BASE STYLE */
+/* Welcome Msg */
+.bot-welcome {
+  text-align: center;
+  color: #166534;
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+/* =========================
+   MESSAGE BASE STYLE
+========================= */
 .chat-msg {
   max-width: 75%;
   padding: 14px 18px;
   border-radius: 14px;
   font-size: 16px;
   line-height: 1.5;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* BOT MESSAGE LEFT */
 .chat-msg.bot {
   align-self: flex-start;
-  background: #f0f2f5;
+  background: #f0fdf4;
   border-left: 4px solid #16a34a;
-  color: #111827;
+  color: #064e3b;
 }
 
 /* USER MESSAGE RIGHT */
@@ -56,13 +107,75 @@
   border-bottom-right-radius: 4px;
 }
 
-/* INPUT SECTION */
+/* =========================
+   TYPING ANIMATION
+========================= */
+.chat-msg.typing span {
+  animation: blink 1.4s infinite both;
+}
+
+.chat-msg.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.chat-msg.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% { opacity: .2; }
+  20% { opacity: 1; }
+  100% { opacity: .2; }
+}
+
+/* =========================
+   CAMERA PREVIEW
+========================= */
+.camera-box {
+  margin-top: 16px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.camera-view {
+  width: 280px;
+  border-radius: 14px;
+  border: 2px solid #16a34a;
+}
+
+.camera-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.camera-actions button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #16a34a;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.camera-actions .danger {
+  background: #dc2626;
+}
+
+/* =========================
+   INPUT SECTION
+========================= */
 .chat-input {
   width: 75%;
   max-width: 900px;
   display: flex;
   gap: 12px;
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 /* INPUT BOX */
@@ -74,19 +187,56 @@
   font-size: 16px;
 }
 
-/* SEND BUTTON */
+/* BUTTON BASE */
 .chat-input button {
-  padding: 14px 24px;
+  padding: 12px 16px;
   background: #16a34a;
   color: white;
   border: none;
   border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   transition: 0.2s;
 }
 
 .chat-input button:hover {
   background: #15803d;
+}
+
+/* VOICE */
+.voice-btn {
+  background: #0f766e;
+}
+
+.voice-btn:hover {
+  background: #115e59;
+}
+
+/* CAMERA */
+.cam-btn {
+  background: #2563eb;
+}
+
+.cam-btn:hover {
+  background: #1e40af;
+}
+
+/* SEND */
+.send-btn {
+  background: #16a34a;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .chat-window,
+  .chat-input {
+    width: 94%;
+  }
+
+  .chat-msg {
+    max-width: 90%;
+  }
 }

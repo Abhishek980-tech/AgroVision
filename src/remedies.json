@@ -1,0 +1,90 @@
+{
+    "Bacterial spot": {
+        "description": "Caused by Xanthomonas spp. Small, water-soaked spots that turn dark and necrotic.",
+        "actions": [
+            "Apply copper-based bactericides.",
+            "Avoid overhead irrigation and overcrowding.",
+            "Rotate crops and use certified disease-free seeds."
+        ]
+    },
+    "Early blight": {
+        "description": "Caused by Alternaria solani. Brown concentric rings on older leaves.",
+        "actions": [
+            "Remove and destroy infected leaves.",
+            "Spray fungicides containing chlorothalonil or mancozeb.",
+            "Rotate crops with non-solanaceous plants."
+        ]
+    },
+    "Healthy": {
+        "description": "No visible disease symptoms detected.",
+        "actions": [
+            "Maintain good irrigation and fertilization.",
+            "Regularly monitor for early disease symptoms.",
+            "Practice crop rotation for long-term health."
+        ]
+    },
+    "Late blight": {
+        "description": "Caused by Phytophthora infestans. Water-soaked, greasy lesions spreading rapidly.",
+        "actions": [
+            "Immediately remove and destroy infected plants.",
+            "Apply fungicides like metalaxyl or mancozeb.",
+            "Avoid overhead watering, improve air circulation."
+        ]
+    },
+    "Leaf Mold": {
+        "description": "Caused by Passalora fulva. Yellow spots on upper surface, olive-green mold beneath.",
+        "actions": [
+            "Improve ventilation, reduce humidity in greenhouses.",
+            "Apply sulfur or copper-based fungicides.",
+            "Remove plant debris after harvest."
+        ]
+    },
+    "Powdery Mildew": {
+        "description": "White powdery fungal growth on leaf surfaces.",
+        "actions": [
+            "Spray sulfur-based fungicides or potassium bicarbonate.",
+            "Ensure proper spacing and ventilation.",
+            "Use resistant varieties when available."
+        ]
+    },
+    "Septoria leaf spot": {
+        "description": "Caused by Septoria lycopersici. Small circular spots with dark borders.",
+        "actions": [
+            "Prune lower leaves to improve airflow.",
+            "Apply fungicides containing chlorothalonil.",
+            "Disinfect tools and remove infected debris."
+        ]
+    },
+    "Spider mites Two spotted spider mite": {
+        "description": "Tiny spider-like pests causing stippling, yellowing, and fine webbing.",
+        "actions": [
+            "Spray neem oil or insecticidal soap.",
+            "Introduce predatory mites (biological control).",
+            "Keep plants well-watered; mites thrive in dry conditions."
+        ]
+    },
+    "Target spot": {
+        "description": "Caused by Corynespora cassiicola. Brown lesions with concentric rings.",
+        "actions": [
+            "Use fungicides (chlorothalonil, copper oxychloride).",
+            "Remove infected leaves promptly.",
+            "Avoid excessive nitrogen fertilization."
+        ]
+    },
+    "Tomato mosaic virus": {
+        "description": "Virus causing mottled light/dark green areas, distorted leaves.",
+        "actions": [
+            "Remove and destroy infected plants immediately.",
+            "Avoid tobacco handling near plants.",
+            "Disinfect tools and hands with 10% bleach."
+        ]
+    },
+    "Tomato yellow leaf curl virus": {
+        "description": "Transmitted by whiteflies. Causes yellowing, curling, and stunted growth.",
+        "actions": [
+            "Use insect-proof netting to reduce whitefly exposure.",
+            "Apply neem oil or insecticides against whiteflies.",
+            "Grow resistant tomato varieties."
+        ]
+    }
+}

@@ -7,18 +7,38 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [lang, setLang] = useState("en"); // ✅ Language State
   const nav = useNavigate();
+
+  const text = {
+    en: {
+      title: "Create Account 🌱",
+      name: "Full Name",
+      email: "Email",
+      password: "Password",
+      btn: "Register",
+      haveAcc: "Already have an account?",
+      signin: "Sign In",
+    },
+    hi: {
+      title: "नया अकाउंट बनाएँ 🌱",
+      name: "पूरा नाम",
+      email: "ईमेल",
+      password: "पासवर्ड",
+      btn: "रजिस्टर करें",
+      haveAcc: "पहले से अकाउंट है?",
+      signin: "लॉग इन करें",
+    },
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await API.post("/auth/register", { name, email, password });
 
-      // Save token and user
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      // Redirect to dashboard
       nav("/dashboard");
     } catch (err) {
       alert(err.response?.data?.message || "Register failed");
@@ -27,18 +47,25 @@ export default function Register() {
 
   return (
     <div className="register-container">
+
+      {/* ✅ LANGUAGE TOGGLE */}
+      <div className="lang-toggle">
+        <button onClick={() => setLang("en")}>EN</button>
+        <button onClick={() => setLang("hi")}>हिंदी</button>
+      </div>
+
       <div className="register-card">
-        <h2>Create Account 🌱</h2>
+        <h2>{text[lang].title}</h2>
 
         <form onSubmit={handleSubmit}>
-          <label>Full Name</label>
+          <label>{text[lang].name}</label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
 
-          <label>Email</label>
+          <label>{text[lang].email}</label>
           <input
             type="email"
             value={email}
@@ -46,7 +73,7 @@ export default function Register() {
             required
           />
 
-          <label>Password</label>
+          <label>{text[lang].password}</label>
           <input
             type="password"
             value={password}
@@ -55,15 +82,14 @@ export default function Register() {
           />
 
           <button type="submit" className="register-btn">
-            Register
+            {text[lang].btn}
           </button>
         </form>
 
-        {/* SIGN IN LINK */}
         <p className="go-signin">
-          Already have an account?{" "}
+          {text[lang].haveAcc}{" "}
           <span onClick={() => nav("/signin")} className="signin-link">
-            Sign In
+            {text[lang].signin}
           </span>
         </p>
       </div>

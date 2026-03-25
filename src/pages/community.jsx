@@ -5,27 +5,50 @@ import "../styles/community.css";
 
 export default function Community() {
   const [posts, setPosts] = useState([]);
-  const [commentInput, setCommentInput] = useState("");  
+  const [commentInput, setCommentInput] = useState("");
+  const [lang, setLang] = useState("en"); // ✅ Language State
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // Load shared predictions
+  const text = {
+    en: {
+      title: "Community Forum",
+      sub: "Browse predictions shared by the LeafVisionAI community.",
+      comments: "Comments",
+      noComments: "No comments yet",
+      placeholder: "Add a comment...",
+      alertEmpty: "Comment cannot be empty",
+      alertLogin: "Please sign in first",
+      model: "Model",
+    },
+    hi: {
+      title: "समुदाय मंच",
+      sub: "LeafVisionAI समुदाय द्वारा साझा किए गए अनुमान देखें।",
+      comments: "टिप्पणियाँ",
+      noComments: "अभी कोई टिप्पणी नहीं",
+      placeholder: "टिप्पणी लिखें...",
+      alertEmpty: "टिप्पणी खाली नहीं हो सकती",
+      alertLogin: "कृपया पहले लॉग इन करें",
+      model: "मॉडल",
+    },
+  };
+
+  // ✅ Load shared predictions
   useEffect(() => {
     API.get("/predictions/shared").then((res) => {
       setPosts(res.data.predictions);
     });
   }, []);
 
-  // Add comment to a post
+  // ✅ Add comment to a post
   const handleAddComment = async (postId) => {
-    if (!commentInput.trim()) return alert("Comment cannot be empty");
-    if (!user) return alert("Please sign in first");
+    if (!commentInput.trim()) return alert(text[lang].alertEmpty);
+    if (!user) return alert(text[lang].alertLogin);
 
     try {
       const res = await API.post(`/predictions/comment/${postId}`, {
         text: commentInput,
       });
 
-      // Update UI instantly
       setPosts((prev) =>
         prev.map((p) =>
           p._id === postId ? { ...p, comments: res.data.comments } : p
@@ -43,10 +66,15 @@ export default function Community() {
       <Navbar />
 
       <div className="community-page">
-        <h1>Community Forum</h1>
-        <p className="comm-sub">
-          Browse predictions shared by the AgroVisionAI community.
-        </p>
+
+        {/* ✅ LANGUAGE TOGGLE */}
+        <div className="lang-toggle">
+          <button onClick={() => setLang("en")}>EN</button>
+          <button onClick={() => setLang("hi")}>हिंदी</button>
+        </div>
+
+        <h1>{text[lang].title}</h1>
+        <p className="comm-sub">{text[lang].sub}</p>
 
         <div className="post-list">
           {posts.map((p) => (
@@ -79,14 +107,15 @@ export default function Community() {
               {/* BODY */}
               <div className="post-body">
                 <p className="post-disease">{p.disease}</p>
-                <p className="post-model">Model: {p.model}</p>
+                <p className="post-model">
+                  {text[lang].model}: {p.model}
+                </p>
               </div>
 
-              {/* Comments Section */}
+              {/* COMMENTS */}
               <div className="comments-section">
-                <h4 className="comment-title">Comments</h4>
+                <h4 className="comment-title">{text[lang].comments}</h4>
 
-                {/* Show existing comments */}
                 <div className="comment-list">
                   {p.comments?.length > 0 ? (
                     p.comments.map((c, index) => (
@@ -98,15 +127,17 @@ export default function Community() {
                       </div>
                     ))
                   ) : (
-                    <p className="no-comments">No comments yet</p>
+                    <p className="no-comments">
+                      {text[lang].noComments}
+                    </p>
                   )}
                 </div>
 
-                {/* Add new comment */}
+                {/* ADD COMMENT */}
                 <div className="comment-input-row">
                   <input
                     type="text"
-                    placeholder="Add a comment..."
+                    placeholder={text[lang].placeholder}
                     value={commentInput}
                     onChange={(e) => setCommentInput(e.target.value)}
                   />

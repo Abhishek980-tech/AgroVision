@@ -6,18 +6,36 @@ import "../styles/signin.css";
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [lang, setLang] = useState("en"); // ✅ Language State
   const nav = useNavigate();
+
+  const text = {
+    en: {
+      title: "Welcome Back 👋",
+      email: "Email",
+      password: "Password",
+      btn: "Sign In",
+      noAcc: "Don’t have an account?",
+      create: "Create one",
+    },
+    hi: {
+      title: "वापस आपका स्वागत है 👋",
+      email: "ईमेल",
+      password: "पासवर्ड",
+      btn: "लॉग इन करें",
+      noAcc: "कोई अकाउंट नहीं है?",
+      create: "नया बनाएं",
+    },
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await API.post("/auth/login", { email, password });
 
-      // Store user and token
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      // Redirect
       nav("/dashboard");
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
@@ -26,12 +44,18 @@ export default function SignIn() {
 
   return (
     <div className="signin-container">
-      <div className="signin-card">
 
-        <h2>Welcome Back 👋</h2>
+      {/* ✅ LANGUAGE TOGGLE */}
+      <div className="lang-toggle">
+        <button onClick={() => setLang("en")}>EN</button>
+        <button onClick={() => setLang("hi")}>हिंदी</button>
+      </div>
+
+      <div className="signin-card">
+        <h2>{text[lang].title}</h2>
 
         <form onSubmit={handleSubmit}>
-          <label>Email</label>
+          <label>{text[lang].email}</label>
           <input
             type="email"
             value={email}
@@ -39,7 +63,7 @@ export default function SignIn() {
             required
           />
 
-          <label>Password</label>
+          <label>{text[lang].password}</label>
           <input
             type="password"
             value={password}
@@ -48,15 +72,14 @@ export default function SignIn() {
           />
 
           <button type="submit" className="signin-btn">
-            Sign In
+            {text[lang].btn}
           </button>
         </form>
 
-        {/* REGISTER LINK */}
         <p className="go-register">
-          Don’t have an account?{" "}
+          {text[lang].noAcc}{" "}
           <span onClick={() => nav("/register")} className="register-link">
-            Create one
+            {text[lang].create}
           </span>
         </p>
       </div>

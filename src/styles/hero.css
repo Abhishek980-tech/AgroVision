@@ -154,6 +154,7 @@
     flex-direction: column;
     text-align: center;
     padding: 60px 24px;
+    position: relative;
   }
 
   .hero-left {
@@ -177,3 +178,29 @@
   object-fit: cover;   /* or 'contain' if you want full visibility */
   border-radius: 14px;
 }
+.hero-lang-toggle {
+  position: absolute;
+  top: 7px;
+  right: 10px;   /* ✅ keeps distance from Sign In / Register */
+  display: flex;
+  gap: 10px;
+  z-index: 99;
+}
+
+.hero-lang-toggle button {
+  border: 1px solid #16a34a;
+  background: white;
+  color: #16a34a;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.hero-lang-toggle button:hover {
+  background: #16a34a;
+  color: white;
+}
+
+

@@ -3,6 +3,9 @@ import logo from "../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+
+
+/* ✅ MAIN NAVBAR */
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,14 +14,20 @@ export default function Navbar() {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  const [profilePic, setProfilePic] = useState(
+    localStorage.getItem("profilePic") || null
+  );
+
   const isActive = (path) =>
     location.pathname === path ? "nav-link active" : "nav-link";
 
-  // Update user state when localStorage changes (after login)
+  // ✅ Sync state when localStorage changes
   useEffect(() => {
     const updateUser = () => {
       setUser(JSON.parse(localStorage.getItem("user")));
+      setProfilePic(localStorage.getItem("profilePic"));
     };
+
     window.addEventListener("storage", updateUser);
     return () => window.removeEventListener("storage", updateUser);
   }, []);
@@ -26,23 +35,21 @@ export default function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("profilePic");
     setUser(null);
+    setProfilePic(null);
     navigate("/");
   };
 
   return (
     <nav className="navbar">
-
-      {/* LEFT: LOGO */}
+      {/* ✅ LEFT: LOGO */}
       <div className="nav-left">
-        <div className="">
-          <img src={logo} alt="logo" className="logo-img" />
-        </div>
-
-        <h2 className="logo-text">AgroVision</h2>
+        <img src={logo} alt="logo" className="logo-img" />
+        <h2 className="logo-text">LeafVision</h2>
       </div>
 
-      {/* CENTER LINKS (ONLY SHOW WHEN LOGGED IN) */}
+      {/* ✅ CENTER LINKS */}
       {user && (
         <div className="nav-center">
           <Link to="/dashboard" className={isActive("/dashboard")}>
@@ -60,10 +67,10 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* RIGHT SIDE */}
+      {/* ✅ RIGHT SIDE */}
       <div className="nav-right">
+        
 
-        {/* IF NOT LOGGED IN → Show Sign In + Register */}
         {!user && (
           <>
             <Link to="/signin" className="auth-small">Sign In</Link>
@@ -71,14 +78,26 @@ export default function Navbar() {
           </>
         )}
 
-        {/* PROFILE ICON (Logged-in users only) */}
         {user && (
           <>
             <Link to="/profile" className="avatar-circle">
-              {user.name?.charAt(0)}
-              {user.name?.charAt(1)}
+              {profilePic ? (
+                <img
+                  src={profilePic}
+                  alt="Profile"
+                  className="navbar-avatar-img"
+                />
+              ) : (
+                <>
+                  {user.name?.charAt(0)}
+                  {user.name?.charAt(1)}
+                </>
+              )}
             </Link>
-            <button className="logout-link" onClick={handleLogout}>Logout</button>
+
+            <button className="logout-link" onClick={handleLogout}>
+              Logout
+            </button>
           </>
         )}
       </div>
